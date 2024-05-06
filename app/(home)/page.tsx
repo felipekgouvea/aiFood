@@ -1,11 +1,11 @@
-import Link from "next/link";
+import Link from 'next/link'
 
 const Home = () => {
-  return ( 
+  return (
     <Link href="/about/123">
-      <button>Ir</button>
+      <button className="text-red flex w-full">Ir</button>
     </Link>
-   );
+  )
 }
- 
-export default Home;
+
+export default Home
