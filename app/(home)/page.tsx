@@ -1,11 +1,11 @@
-import Link from 'next/link'
+import Header from "../_components/header/page";
 
 const Home = () => {
   return (
-    <Link href="/about/123">
-      <button className="text-red flex w-full">Ir</button>
-    </Link>
-  )
-}
+    <div className="px-5 py-6">
+      <Header />
+    </div>
+  );
+};
 
-export default Home
+export default Home;
