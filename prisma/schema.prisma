@@ -12,7 +12,7 @@ model Restaurant {
   name                String
   imageUrl            String
   deliveryFee         Decimal    @db.Decimal(10, 2)
-  deleveryTimeMinutes Int
+  deliveryTimeMinutes Int
   categories          Category[]
   product             Product[]
 }
