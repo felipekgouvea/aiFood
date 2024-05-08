@@ -46,7 +46,7 @@ const ProductDetails = ({
     });
 
   return (
-    <div className="py-5">
+    <div className="relative z-50 mt-[-1.5rem] rounded-tl-3xl rounded-tr-3xl bg-white py-5">
       <div className="flex items-center gap-[0.375rem] px-5">
         <div className="relative h-6 w-6">
           <Image
@@ -133,9 +133,13 @@ const ProductDetails = ({
         </p>
       </div>
 
-      <div className="py-6">
-        <h2 className="px-5 pb-3 font-bold">Sucos</h2>
+      <div className="px-5 py-6">
+        <h2 className="pb-3 font-bold">Sucos</h2>
         <ProductList products={complementaryProducts} />
+      </div>
+
+      <div className="mt-6 px-5">
+        <Button className="w-full font-semibold">Adicionar à sacola</Button>
       </div>
     </div>
   );

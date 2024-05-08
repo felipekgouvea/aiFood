@@ -33,7 +33,7 @@ const ProductItem = ({ product }: ProductItemProps) => {
             fill
             className="rounded-lg object-cover shadow-md"
           />
-          <Badge className="absolute left-4 top-3 flex items-center justify-center rounded-full px-2 py-1 text-white">
+          <Badge className="absolute left-4 top-3 flex items-center justify-center rounded-full px-2 py-1 text-white hover:bg-primary">
             <ArrowDownIcon size={12} />
             {`${product.discountPercentage}%`}
           </Badge>

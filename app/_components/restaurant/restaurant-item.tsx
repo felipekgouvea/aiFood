@@ -4,9 +4,8 @@ import { Restaurant } from "@prisma/client";
 import Image from "next/image";
 import { Badge } from "../ui/badge";
 import { formatCurrency } from "@/app/_helpers/price";
-import { HeartIcon } from "lucide-react";
-import { Button } from "../ui/button";
 import Link from "next/link";
+import Heart from "../heart/heart-icon";
 
 interface RestaurantItemProps {
   restaurant: Restaurant;
@@ -31,13 +30,9 @@ const RestaurantItem = ({ restaurant }: RestaurantItemProps) => {
             <Image src="/star-icon.png" alt="Estrela" width={12} height={13} />
             <span className="text-xs">5.0</span>
           </Badge>
-
-          <Button
-            size="icon"
-            className="absolute right-2 top-2 h-7 w-7 rounded-full bg-[#3D3D3C]"
-          >
-            <HeartIcon size={14} className="fill-white" />
-          </Button>
+          <div className="absolute right-2 top-2">
+            <Heart />
+          </div>
         </div>
 
         <div className="pt-3">
