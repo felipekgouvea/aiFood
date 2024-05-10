@@ -1,11 +1,11 @@
-import { db } from "@/app/_lib/prisma";
-import { notFound } from "next/navigation";
-import RestaurantImage from "./_components/restaurant-image";
+import { db } from '@/app/_lib/prisma'
+import { notFound } from 'next/navigation'
+import RestaurantImage from './_components/restaurant-image'
 
 interface RestaurantPageProps {
   params: {
-    id: string;
-  };
+    id: string
+  }
 }
 
 const RestaurantPage = async ({ params: { id } }: RestaurantPageProps) => {
@@ -13,10 +13,10 @@ const RestaurantPage = async ({ params: { id } }: RestaurantPageProps) => {
     where: {
       id,
     },
-  });
+  })
 
   if (!restaurant) {
-    return notFound();
+    return notFound()
   }
 
   return (
@@ -24,7 +24,7 @@ const RestaurantPage = async ({ params: { id } }: RestaurantPageProps) => {
       <RestaurantImage restaurant={restaurant} />
       {/* <ProductDetails product={product} complementaryProducts={juces} /> */}
     </div>
-  );
-};
+  )
+}
 
-export default RestaurantPage;
+export default RestaurantPage

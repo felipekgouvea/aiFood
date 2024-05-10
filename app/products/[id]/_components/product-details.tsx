@@ -1,49 +1,49 @@
-"use client";
+'use client'
 
-import DiscountBadge from "@/app/_components/badge/discount-badge";
-import ProductList from "@/app/_components/product/product-list";
-import { Button } from "@/app/_components/ui/button";
+import DiscountBadge from '@/app/_components/badge/discount-badge'
+import ProductList from '@/app/_components/product/product-list'
+import { Button } from '@/app/_components/ui/button'
 import {
   calculeteProductTotalPrice,
   formatCurrency,
-} from "@/app/_helpers/price";
-import { Prisma } from "@prisma/client";
+} from '@/app/_helpers/price'
+import { Prisma } from '@prisma/client'
 import {
   BikeIcon,
   ChevronLeftIcon,
   ChevronRightIcon,
   TimerIcon,
-} from "lucide-react";
-import Image from "next/image";
-import { useState } from "react";
+} from 'lucide-react'
+import Image from 'next/image'
+import { useState } from 'react'
 
 interface ProductDetailsProps {
   product: Prisma.ProductGetPayload<{
     include: {
-      restaurant: true;
-    };
-  }>;
+      restaurant: true
+    }
+  }>
   complementaryProducts: Prisma.ProductGetPayload<{
     include: {
-      restaurant: true;
-    };
-  }>[];
+      restaurant: true
+    }
+  }>[]
 }
 
 const ProductDetails = ({
   product,
   complementaryProducts,
 }: ProductDetailsProps) => {
-  const [quantity, setQuantity] = useState(1);
+  const [quantity, setQuantity] = useState(1)
 
   const handleIncreaseQuantityClick = () =>
-    setQuantity((currentState) => currentState + 1);
+    setQuantity((currentState) => currentState + 1)
   const handleDecreaseQuantityClick = () =>
     setQuantity((currentState) => {
-      if (currentState === 1) return 1;
+      if (currentState === 1) return 1
 
-      return currentState - 1;
-    });
+      return currentState - 1
+    })
 
   return (
     <div className="relative z-50 mt-[-1.5rem] rounded-tl-3xl rounded-tr-3xl bg-white py-5">
@@ -142,7 +142,7 @@ const ProductDetails = ({
         <Button className="w-full font-semibold">Adicionar à sacola</Button>
       </div>
     </div>
-  );
-};
+  )
+}
 
-export default ProductDetails;
+export default ProductDetails

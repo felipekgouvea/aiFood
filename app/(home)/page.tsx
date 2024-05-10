@@ -1,11 +1,11 @@
-import Image from "next/image";
-import CategoryList from "../_components/category/category-list";
-import Header from "../_components/header/header";
-import Search from "../_components/search/search";
-import ProductList from "../_components/product/product-list";
-import { ChevronRight } from "lucide-react";
-import RestaurantList from "../_components/restaurant/restaurant-list";
-import { db } from "../_lib/prisma";
+import Image from 'next/image'
+import CategoryList from '../_components/category/category-list'
+import Header from '../_components/header/header'
+import Search from '../_components/search/search'
+import ProductList from '../_components/product/product-list'
+import { ChevronRight } from 'lucide-react'
+import RestaurantList from '../_components/restaurant/restaurant-list'
+import { db } from '../_lib/prisma'
 
 const Home = async () => {
   const products = await db.product.findMany({
@@ -18,7 +18,7 @@ const Home = async () => {
     include: {
       restaurant: true,
     },
-  });
+  })
 
   return (
     <>
@@ -82,7 +82,7 @@ const Home = async () => {
         <RestaurantList />
       </div>
     </>
-  );
-};
+  )
+}
 
-export default Home;
+export default Home

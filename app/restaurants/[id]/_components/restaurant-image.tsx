@@ -1,22 +1,22 @@
-"use client";
+'use client'
 
-import Heart from "@/app/_components/heart/heart-icon";
-import { Button } from "@/app/_components/ui/button";
-import { Restaurant } from "@prisma/client";
-import { ChevronLeftIcon } from "lucide-react";
-import Image from "next/image";
-import { useRouter } from "next/navigation";
+import Heart from '@/app/_components/heart/heart-icon'
+import { Button } from '@/app/_components/ui/button'
+import { Restaurant } from '@prisma/client'
+import { ChevronLeftIcon } from 'lucide-react'
+import Image from 'next/image'
+import { useRouter } from 'next/navigation'
 
 interface RestaurantImageProps {
-  restaurant: Pick<Restaurant, "name" | "imageUrl">;
+  restaurant: Pick<Restaurant, 'name' | 'imageUrl'>
 }
 
 const RestaurantImage = ({ restaurant }: RestaurantImageProps) => {
-  const router = useRouter();
+  const router = useRouter()
 
   const handleBackClick = () => {
-    router.back();
-  };
+    router.back()
+  }
   return (
     <div className="relative h-[200px] w-full">
       <Image
@@ -33,10 +33,10 @@ const RestaurantImage = ({ restaurant }: RestaurantImageProps) => {
         <ChevronLeftIcon />
       </Button>
       <div className="absolute right-4 top-4">
-        <Heart />
+        <Heart buttonSize="icon" heartSize={24} />
       </div>
     </div>
-  );
-};
+  )
+}
 
-export default RestaurantImage;
+export default RestaurantImage

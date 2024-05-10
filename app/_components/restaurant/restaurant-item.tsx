@@ -1,14 +1,14 @@
-"use client";
+'use client'
 
-import { Restaurant } from "@prisma/client";
-import Image from "next/image";
-import { Badge } from "../ui/badge";
-import { formatCurrency } from "@/app/_helpers/price";
-import Link from "next/link";
-import Heart from "../heart/heart-icon";
+import { Restaurant } from '@prisma/client'
+import Image from 'next/image'
+import { Badge } from '../ui/badge'
+import { formatCurrency } from '@/app/_helpers/price'
+import Link from 'next/link'
+import Heart from '../heart/heart-icon'
 
 interface RestaurantItemProps {
-  restaurant: Restaurant;
+  restaurant: Restaurant
 }
 
 const RestaurantItem = ({ restaurant }: RestaurantItemProps) => {
@@ -31,7 +31,7 @@ const RestaurantItem = ({ restaurant }: RestaurantItemProps) => {
             <span className="text-xs">5.0</span>
           </Badge>
           <div className="absolute right-2 top-2">
-            <Heart />
+            <Heart buttonSize="default" heartSize={18} />
           </div>
         </div>
 
@@ -49,7 +49,7 @@ const RestaurantItem = ({ restaurant }: RestaurantItemProps) => {
               />
               <span className="text-xs text-muted-foreground">
                 {Number(restaurant.deliveryFee) === 0
-                  ? "Entrega grátis"
+                  ? 'Entrega grátis'
                   : formatCurrency(Number(restaurant.deliveryFee))}
               </span>
             </div>
@@ -70,7 +70,7 @@ const RestaurantItem = ({ restaurant }: RestaurantItemProps) => {
         </div>
       </div>
     </Link>
-  );
-};
+  )
+}
 
-export default RestaurantItem;
+export default RestaurantItem
