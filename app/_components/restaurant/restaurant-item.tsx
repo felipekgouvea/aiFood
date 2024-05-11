@@ -6,15 +6,17 @@ import { formatCurrency } from '@/app/_helpers/price'
 import Link from 'next/link'
 import Heart from '../heart/heart-icon'
 import StartBadge from '../badge/start-badge'
+import { cn } from '@/app/_lib/utils'
 
 interface RestaurantItemProps {
   restaurant: Restaurant
+  className?: string
 }
 
-const RestaurantItem = ({ restaurant }: RestaurantItemProps) => {
+const RestaurantItem = ({ restaurant, className }: RestaurantItemProps) => {
   return (
     <Link
-      className="w-[266px] min-w-[266px]"
+      className={cn('w-[266px] min-w-[266px]', className)}
       href={`/restaurants/${restaurant.id}`}
     >
       <div className="w-full space-y-2 pt-4">
@@ -34,10 +36,10 @@ const RestaurantItem = ({ restaurant }: RestaurantItemProps) => {
           </div>
         </div>
 
-        <div className="pt-3">
-          <h3 className="text-sm font-bold">{restaurant.name}</h3>
+        <div>
+          <h3 className="mb-1 text-sm font-bold">{restaurant.name}</h3>
 
-          <div className="flex gap-4 pb-5 pt-3">
+          <div className="flex gap-4">
             <div className="flex items-center gap-1">
               <Image
                 src="/bike-icon.png"

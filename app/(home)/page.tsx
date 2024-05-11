@@ -6,6 +6,8 @@ import ProductList from '../_components/product/product-list'
 import { ChevronRight } from 'lucide-react'
 import RestaurantList from '../_components/restaurant/restaurant-list'
 import { db } from '../_lib/prisma'
+import { Button } from '../_components/ui/button'
+import Link from 'next/link'
 
 const Home = async () => {
   const products = await db.product.findMany({
@@ -69,15 +71,19 @@ const Home = async () => {
         />
       </div>
 
-      <div className="px-5 pb-5 pt-6                                                                                                ">
-        <div className="flex justify-between">
-          <h1 className="pb-4 text-lg font-semibold">
-            Restaurates Recomendados
-          </h1>
-          <button className="flex text-primary">
-            Ver todos
-            <ChevronRight />
-          </button>
+      <div className="space-y-4 px-5 py-6">
+        <div className="flex items-center justify-between">
+          <h2 className="font-semibold">Restaurates Recomendados</h2>
+          <Button
+            variant="ghost"
+            className="h-fit p-0 text-primary hover:bg-transparent"
+            asChild
+          >
+            <Link href="/restaurants/recommended">
+              Ver todos
+              <ChevronRight />
+            </Link>
+          </Button>
         </div>
         <RestaurantList />
       </div>
