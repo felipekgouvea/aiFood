@@ -1,13 +1,17 @@
-import { Category } from "@prisma/client";
-import Image from "next/image";
+import { Category } from '@prisma/client'
+import Image from 'next/image'
+import Link from 'next/link'
 
 interface CategoryItemProps {
-  category: Category;
+  category: Category
 }
 
 const CaterogyItem = ({ category }: CategoryItemProps) => {
   return (
-    <div className="flex items-center justify-center gap-3 rounded-full px-4 py-3 shadow-md">
+    <Link
+      href={`/categories/${category.id}/products`}
+      className="flex items-center justify-center gap-3 rounded-full px-4 py-3 shadow-md"
+    >
       <Image
         src={category.imageUrl}
         alt={category.name}
@@ -15,8 +19,8 @@ const CaterogyItem = ({ category }: CategoryItemProps) => {
         height={30}
       />
       <span className="text-sm font-semibold">{category.name}</span>
-    </div>
-  );
-};
+    </Link>
+  )
+}
 
-export default CaterogyItem;
+export default CaterogyItem

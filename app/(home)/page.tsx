@@ -73,15 +73,18 @@ const Home = async () => {
 
       <div className="space-y-4 px-5 py-6">
         <div className="flex items-center justify-between">
-          <h2 className="font-semibold">Restaurates Recomendados</h2>
+          <h2 className="font-semibold">Restaurantes Recomendados</h2>
+
           <Button
             variant="ghost"
             className="h-fit p-0 text-primary hover:bg-transparent"
             asChild
           >
             <Link href="/restaurants/recommended">
-              Ver todos
-              <ChevronRight />
+              <span className="flex items-center">
+                Ver todos
+                <ChevronRight />
+              </span>
             </Link>
           </Button>
         </div>
