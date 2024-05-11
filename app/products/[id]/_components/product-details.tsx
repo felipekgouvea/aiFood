@@ -1,6 +1,7 @@
 'use client'
 
 import DiscountBadge from '@/app/_components/badge/discount-badge'
+import DeliveryInfo from '@/app/_components/delivery/delivery-info'
 import ProductList from '@/app/_components/product/product-list'
 import { Button } from '@/app/_components/ui/button'
 import {
@@ -8,12 +9,7 @@ import {
   formatCurrency,
 } from '@/app/_helpers/price'
 import { Prisma } from '@prisma/client'
-import {
-  BikeIcon,
-  ChevronLeftIcon,
-  ChevronRightIcon,
-  TimerIcon,
-} from 'lucide-react'
+import { ChevronLeftIcon, ChevronRightIcon } from 'lucide-react'
 import Image from 'next/image'
 import { useState } from 'react'
 
@@ -100,30 +96,8 @@ const ProductDetails = ({
         </div>
       </div>
 
-      <div className=" mt-6 flex justify-around rounded-xl border border-solid border-[#EEEEEE] px-5 py-3 shadow-sm">
-        <div className="flex flex-col items-center gap-[2px]">
-          <div className="item-center flex gap-1">
-            <span className="text-xs text-muted-foreground">Entrega</span>
-            <BikeIcon size={14} />
-          </div>
-          {Number(product.restaurant.deliveryFee) > 0 ? (
-            <p className="text-xs font-bold">
-              {formatCurrency(Number(product.restaurant.deliveryFee))}
-            </p>
-          ) : (
-            <span className="text-xs font-semibold">Grátis</span>
-          )}
-        </div>
-
-        <div className="flex flex-col items-center gap-[2px]">
-          <div className="item-center flex gap-1">
-            <span className="text-xs text-muted-foreground">Entrega</span>
-            <TimerIcon size={14} />
-          </div>
-          <span className="text-xs font-semibold">
-            {product.restaurant.deliveryTimeMinutes} min
-          </span>
-        </div>
+      <div className="px-5">
+        <DeliveryInfo restaurant={product.restaurant} />
       </div>
 
       <div className="px-5 py-6">

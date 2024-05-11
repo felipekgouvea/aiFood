@@ -2,10 +2,10 @@
 
 import { Restaurant } from '@prisma/client'
 import Image from 'next/image'
-import { Badge } from '../ui/badge'
 import { formatCurrency } from '@/app/_helpers/price'
 import Link from 'next/link'
 import Heart from '../heart/heart-icon'
+import StartBadge from '../badge/start-badge'
 
 interface RestaurantItemProps {
   restaurant: Restaurant
@@ -25,11 +25,10 @@ const RestaurantItem = ({ restaurant }: RestaurantItemProps) => {
             fill
             className="rounded-lg object-cover shadow-md"
           />
+          <div className="absolute left-4 top-3">
+            <StartBadge varient="default" />
+          </div>
 
-          <Badge className="absolute left-4 top-3 gap-1 rounded-full  bg-white px-[10px] py-1 font-bold text-accent-foreground hover:bg-white">
-            <Image src="/star-icon.png" alt="Estrela" width={12} height={13} />
-            <span className="text-xs">5.0</span>
-          </Badge>
           <div className="absolute right-2 top-2">
             <Heart buttonSize="default" heartSize={18} />
           </div>

@@ -1,25 +1,25 @@
-"use client";
+'use client'
 
 import {
   calculeteProductTotalPrice,
   formatCurrency,
-} from "@/app/_helpers/price";
-import { Prisma } from "@prisma/client";
-import Image from "next/image";
-import { Badge } from "../ui/badge";
-import { ArrowDownIcon } from "lucide-react";
-import Link from "next/link";
+} from '@/app/_helpers/price'
+import { Prisma } from '@prisma/client'
+import Image from 'next/image'
+import { Badge } from '../ui/badge'
+import { ArrowDownIcon } from 'lucide-react'
+import Link from 'next/link'
 
 interface ProductItemProps {
   product: Prisma.ProductGetPayload<{
     include: {
       restaurant: {
         select: {
-          name: true;
-        };
-      };
-    };
-  }>;
+          name: true
+        }
+      }
+    }
+  }>
 }
 
 const ProductItem = ({ product }: ProductItemProps) => {
@@ -33,10 +33,15 @@ const ProductItem = ({ product }: ProductItemProps) => {
             fill
             className="rounded-lg object-cover shadow-md"
           />
-          <Badge className="absolute left-4 top-3 flex items-center justify-center rounded-full px-2 py-1 text-white hover:bg-primary">
-            <ArrowDownIcon size={12} />
-            {`${product.discountPercentage}%`}
-          </Badge>
+          {product.discountPercentage > 0 && (
+            <Badge
+              variant="destructive"
+              className="absolute left-4 top-3 flex items-center justify-center rounded-full px-2 py-1 text-white hover:bg-destructive"
+            >
+              <ArrowDownIcon size={12} />
+              {`${product.discountPercentage}%`}
+            </Badge>
+          )}
         </div>
         <div>
           <h2 className="overflow-hidden text-ellipsis text-nowrap font-semibold">
@@ -58,7 +63,7 @@ const ProductItem = ({ product }: ProductItemProps) => {
         </div>
       </div>
     </Link>
-  );
-};
+  )
+}
 
-export default ProductItem;
+export default ProductItem
