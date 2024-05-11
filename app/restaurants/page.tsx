@@ -36,7 +36,7 @@ const Restaurants = ({ params }: RestaurantsProps) => {
         <div className="mt-4">
           <Search
             defaultValues={{
-              search: params.search as any,
+              search: params.search as string,
             }}
           />
         </div>
