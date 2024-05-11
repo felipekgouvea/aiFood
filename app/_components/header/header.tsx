@@ -7,7 +7,14 @@ const Header = () => {
   return (
     <header className="flex justify-between">
       <Link href="/">
-        <Image src="/logo.png" alt="Logo da iaFood" width={100} height={30} />
+        <div className="relative h-[30px] w-[100px]">
+          <Image
+            src="/logo.png"
+            alt="Logo da iaFood"
+            fill
+            className="object-cover"
+          />
+        </div>
       </Link>
       <Button
         size="icon"
