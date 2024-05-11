@@ -55,8 +55,9 @@ const Home = async () => {
             variant="ghost"
             className="h-fit p-0 text-primary hover:bg-transparent"
             asChild
+            size="default"
           >
-            <Link href="/products/recommended">
+            <Link href="/products/recommended" className="w-auto">
               <span className="flex items-center">
                 Ver todos
                 <ChevronRight />
@@ -88,7 +89,7 @@ const Home = async () => {
             className="h-fit p-0 text-primary hover:bg-transparent"
             asChild
           >
-            <Link href="/restaurants/recommended">
+            <Link href="/restaurants/recommended" className="w-auto">
               <span className="flex items-center">
                 Ver todos
                 <ChevronRight />
