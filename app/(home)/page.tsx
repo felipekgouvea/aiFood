@@ -51,10 +51,18 @@ const Home = async () => {
       <div className="px-5 pt-6">
         <div className="flex justify-between">
           <h1 className="pb-4 text-lg font-semibold">Pedidos Recomendados</h1>
-          <button className="flex text-primary">
-            Ver todos
-            <ChevronRight />
-          </button>
+          <Button
+            variant="ghost"
+            className="h-fit p-0 text-primary hover:bg-transparent"
+            asChild
+          >
+            <Link href="/products/recommended">
+              <span className="flex items-center">
+                Ver todos
+                <ChevronRight />
+              </span>
+            </Link>
+          </Button>
         </div>
         <ProductList products={products} />
       </div>
