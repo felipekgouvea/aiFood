@@ -1,13 +1,11 @@
 import Image from 'next/image'
 import { Button } from '../ui/button'
 import {
-  Heart,
   HeartIcon,
   HomeIcon,
   LogInIcon,
   LogOutIcon,
   MenuIcon,
-  ScrollText,
 } from 'lucide-react'
 import Link from 'next/link'
 import {
