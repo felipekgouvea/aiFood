@@ -1,4 +1,4 @@
-import { CartProduct } from '@/app/_context/cart'
+import { CartContext, CartProduct } from '@/app/_context/cart'
 import {
   calculeteProductTotalPrice,
   formatCurrency,
@@ -6,28 +6,35 @@ import {
 import Image from 'next/image'
 import { Button } from '../ui/button'
 import { ChevronLeftIcon, ChevronRightIcon, Trash2Icon } from 'lucide-react'
-import { useState } from 'react'
+import { useContext } from 'react'
 
 interface CartItemProps {
   cartProduct: CartProduct
 }
 
 const CartItem = ({ cartProduct }: CartItemProps) => {
-  const [quantity, setQuantity] = useState(1)
+  const {
+    increaseProductQuantity,
+    decreaseProductQuantity,
+    removeProductToCart,
+  } = useContext(CartContext)
 
-  const handleIncreaseQuantityClick = () =>
-    setQuantity((currentState) => currentState + 1)
+  const handleIncreaseProductClick = () => {
+    increaseProductQuantity(cartProduct.id)
+  }
 
-  const handleDecreaseQuantityClick = () =>
-    setQuantity((currentState) => {
-      if (currentState === 1) return 1
+  const handleDecreaseProductClick = () => {
+    decreaseProductQuantity(cartProduct.id)
+  }
 
-      return currentState - 1
-    })
+  const handleRemoveProductToCartClick = () => {
+    removeProductToCart(cartProduct.id)
+  }
+
   return (
     <div className=" flex items-center justify-between">
-      <div className="flex items-start gap-6">
-        <div className="relative aspect-square h-28 w-28 ">
+      <div className="flex items-start gap-3">
+        <div className="relative aspect-square h-24 w-24">
           <Image
             src={cartProduct.imageUrl}
             alt={cartProduct.name}
@@ -37,34 +44,42 @@ const CartItem = ({ cartProduct }: CartItemProps) => {
         </div>
         <div className="flex flex-col gap-4">
           <div className="flex flex-col gap-1">
-            <h2 className="font-semibold">{cartProduct.name}</h2>
+            <h2 className="text-sm font-semibold">{cartProduct.name}</h2>
             <div className="flex items-center gap-2">
-              <h3 className="font-bold">
-                {formatCurrency(calculeteProductTotalPrice(cartProduct))}
+              <h3 className="text-sm font-bold">
+                {formatCurrency(
+                  calculeteProductTotalPrice(cartProduct) *
+                    cartProduct.quantity,
+                )}
               </h3>
               {cartProduct.discountPercentage > 0 && (
                 <span className="text-sm text-muted-foreground line-through">
-                  {formatCurrency(Number(cartProduct.price))}
+                  {formatCurrency(
+                    Number(cartProduct.price) * cartProduct.quantity,
+                  )}
                 </span>
               )}
             </div>
           </div>
           <div className="flex items-center gap-3 text-center">
             <Button
-              onClick={handleDecreaseQuantityClick}
               size="icon"
               variant="ghost"
-              className="border border-solid border-muted-foreground"
+              onClick={handleDecreaseProductClick}
+              className="h-8 w-8 border border-solid border-muted-foreground"
             >
-              <ChevronLeftIcon />
+              <ChevronLeftIcon size={14} />
             </Button>
-            <span className="w-4">{quantity}</span>
+
+            <span className="w-4">{cartProduct.quantity}</span>
+
             <Button
               size="icon"
               variant="default"
-              onClick={handleIncreaseQuantityClick}
+              onClick={handleIncreaseProductClick}
+              className="h-8 w-8"
             >
-              <ChevronRightIcon />
+              <ChevronRightIcon size={14} />
             </Button>
           </div>
         </div>
@@ -74,9 +89,10 @@ const CartItem = ({ cartProduct }: CartItemProps) => {
         <Button
           size="icon"
           variant="outline"
-          className="border border-[#cac3c3] hover:bg-primary hover:text-white"
+          onClick={handleRemoveProductToCartClick}
+          className="h-8 w-8 border border-[#cac3c3] hover:bg-primary hover:text-white"
         >
-          <Trash2Icon size={20} />
+          <Trash2Icon size={16} />
         </Button>
       </div>
     </div>

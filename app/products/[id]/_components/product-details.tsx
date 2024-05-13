@@ -45,7 +45,7 @@ const ProductDetails = ({
 
   const handleAddToCartClick = () => {
     setIsOpenCart(true)
-    addProductToCart(product)
+    addProductToCart(product, quantity)
   }
 
   const handleIncreaseQuantityClick = () =>

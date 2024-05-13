@@ -6,7 +6,7 @@ const Cart = () => {
   const { products } = useContext(CartContext)
 
   return (
-    <div className="flex flex-col gap-10">
+    <div className="flex flex-col gap-6">
       {products.map((product) => (
         <CartItem cartProduct={product} key={product.id} />
       ))}
