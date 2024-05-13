@@ -4,6 +4,16 @@ import DiscountBadge from '@/app/_components/badge/discount-badge'
 import Cart from '@/app/_components/cart/cart'
 import DeliveryInfo from '@/app/_components/delivery/delivery-info'
 import ProductList from '@/app/_components/product/product-list'
+import {
+  AlertDialog,
+  AlertDialogAction,
+  AlertDialogCancel,
+  AlertDialogContent,
+  AlertDialogDescription,
+  AlertDialogFooter,
+  AlertDialogHeader,
+  AlertDialogTitle,
+} from '@/app/_components/ui/alert-dialog'
 import { Button } from '@/app/_components/ui/button'
 import {
   Sheet,
@@ -38,14 +48,28 @@ const ProductDetails = ({
   product,
   complementaryProducts,
 }: ProductDetailsProps) => {
-  const { addProductToCart } = useContext(CartContext)
+  const { addProductToCart, products } = useContext(CartContext)
 
   const [isOpenCart, setIsOpenCart] = useState(false)
+  const [isConfirmationDialogOpen, setIsConfirmationDialogOpen] =
+    useState(false)
   const [quantity, setQuantity] = useState(1)
 
-  const handleAddToCartClick = () => {
+  const addToCart = ({ emptyCart }: { emptyCart?: boolean }) => {
     setIsOpenCart(true)
-    addProductToCart(product, quantity)
+    addProductToCart({ product, quantity, emptyCart })
+  }
+
+  const handleAddToCartClick = () => {
+    const hasDifferentRestaurantProduct = products.some(
+      (cartProduct) => cartProduct.restaurantId !== product.restaurantId,
+    )
+
+    if (hasDifferentRestaurantProduct) {
+      return setIsConfirmationDialogOpen(true)
+    }
+
+    addToCart({ emptyCart: false })
   }
 
   const handleIncreaseQuantityClick = () =>
@@ -143,7 +167,7 @@ const ProductDetails = ({
       <Sheet open={isOpenCart} onOpenChange={setIsOpenCart}>
         <SheetContent className="w-[90%]">
           <SheetHeader>
-            <SheetTitle className="pb-8 text-left text-lg font-semibold">
+            <SheetTitle className="pb-3 text-left text-lg font-semibold">
               Sacola
             </SheetTitle>
           </SheetHeader>
@@ -152,6 +176,34 @@ const ProductDetails = ({
           </h1>
         </SheetContent>
       </Sheet>
+
+      <AlertDialog
+        open={isConfirmationDialogOpen}
+        onOpenChange={setIsConfirmationDialogOpen}
+      >
+        <AlertDialogContent className="w-[90%]">
+          <AlertDialogHeader>
+            <AlertDialogTitle>Produto de outro restaurante!</AlertDialogTitle>
+            <AlertDialogDescription>
+              Ao adicionar um produto de outro restaurante você limpará a sacola
+              atual, deseja mesmo continuar?
+            </AlertDialogDescription>
+          </AlertDialogHeader>
+          <AlertDialogFooter>
+            <AlertDialogCancel className="w-full p-5">
+              Cancelar
+            </AlertDialogCancel>
+            <AlertDialogAction
+              onClick={() => {
+                addToCart({ emptyCart: true })
+              }}
+              className="w-full p-5"
+            >
+              Esvaziar sacola e adicionar
+            </AlertDialogAction>
+          </AlertDialogFooter>
+        </AlertDialogContent>
+      </AlertDialog>
     </>
   )
 }

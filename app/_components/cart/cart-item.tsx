@@ -17,6 +17,7 @@ const CartItem = ({ cartProduct }: CartItemProps) => {
     increaseProductQuantity,
     decreaseProductQuantity,
     removeProductToCart,
+    products,
   } = useContext(CartContext)
 
   const handleIncreaseProductClick = () => {
@@ -29,6 +30,7 @@ const CartItem = ({ cartProduct }: CartItemProps) => {
 
   const handleRemoveProductToCartClick = () => {
     removeProductToCart(cartProduct.id)
+    console.log(products.length)
   }
 
   return (
@@ -61,7 +63,7 @@ const CartItem = ({ cartProduct }: CartItemProps) => {
               )}
             </div>
           </div>
-          <div className="flex items-center gap-3 text-center">
+          <div className="flex items-center text-center">
             <Button
               size="icon"
               variant="ghost"
@@ -71,7 +73,7 @@ const CartItem = ({ cartProduct }: CartItemProps) => {
               <ChevronLeftIcon size={14} />
             </Button>
 
-            <span className="w-4">{cartProduct.quantity}</span>
+            <span className="w-8">{cartProduct.quantity}</span>
 
             <Button
               size="icon"
