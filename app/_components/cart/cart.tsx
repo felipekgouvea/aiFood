@@ -17,7 +17,7 @@ const Cart = () => {
   }
 
   return (
-    <div className="flex h-full flex-col justify-between py-5">
+    <div className="flex h-screen flex-col justify-between py-5">
       {products.length > 0 ? (
         <>
           <div className="space-y-4">

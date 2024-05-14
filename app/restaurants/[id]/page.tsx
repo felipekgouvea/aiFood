@@ -5,6 +5,7 @@ import Image from 'next/image'
 import StartBadge from '@/app/_components/badge/start-badge'
 import DeliveryInfo from '@/app/_components/delivery/delivery-info'
 import ProductList from '@/app/_components/product/product-list'
+import CartBanner from './_components/cart-banner'
 
 interface RestaurantPageProps {
   params: {
@@ -100,6 +101,8 @@ const RestaurantPage = async ({ params: { id } }: RestaurantPageProps) => {
           </div>
         ))}
       </div>
+
+      <CartBanner restaurant={restaurant} />
     </div>
   )
 }
