@@ -17,7 +17,6 @@ const CartItem = ({ cartProduct }: CartItemProps) => {
     increaseProductQuantity,
     decreaseProductQuantity,
     removeProductToCart,
-    products,
   } = useContext(CartContext)
 
   const handleIncreaseProductClick = () => {
@@ -30,7 +29,6 @@ const CartItem = ({ cartProduct }: CartItemProps) => {
 
   const handleRemoveProductToCartClick = () => {
     removeProductToCart(cartProduct.id)
-    console.log(products.length)
   }
 
   return (
