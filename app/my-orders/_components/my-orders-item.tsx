@@ -8,6 +8,7 @@ import { Separator } from '@/app/_components/ui/separator'
 import { formatCurrency } from '@/app/_helpers/price'
 import { OrderStatus, Prisma } from '@prisma/client'
 import { ChevronRight } from 'lucide-react'
+import Link from 'next/link'
 
 interface MyOrdersItemProps {
   order: Prisma.OrderGetPayload<{
@@ -105,7 +106,9 @@ const MyOrdersItem = ({ order }: MyOrdersItemProps) => {
               {order.restaurant.name}
             </span>
           </div>
-          <ChevronRight />
+          <Link href={`/restaurants/${order.restaurantId}`}>
+            <ChevronRight />
+          </Link>
         </div>
         <Separator />
 
