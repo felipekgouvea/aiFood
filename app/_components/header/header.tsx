@@ -118,19 +118,25 @@ const Header = () => {
           <div className="space-y-2 px-5">
             <Button
               variant="ghost"
+              asChild
               className="w-full justify-start space-x-3 py-6 text-sm font-normal hover:bg-primary hover:text-white "
             >
-              <HomeIcon size={16} className="ml-2" />
-              <span className="block">Início</span>
+              <Link href="/">
+                <HomeIcon size={16} className="ml-2" />
+                <span className="block">Início</span>
+              </Link>
             </Button>
             {data?.user && (
               <div>
                 <Button
+                  asChild
                   variant="ghost"
                   className="w-full justify-start space-x-3 py-6 text-sm font-normal hover:bg-primary hover:text-white "
                 >
-                  <HomeIcon size={16} className="ml-2" />
-                  <span className="block">Meus Pedidos</span>
+                  <Link href="/my-orders">
+                    <HomeIcon size={16} className="ml-2" />
+                    <span className="block">Meus Pedidos</span>
+                  </Link>
                 </Button>
                 <Button
                   variant="ghost"

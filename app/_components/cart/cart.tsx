@@ -43,9 +43,17 @@ const Cart = () => {
         restaurant: {
           connect: { id: restaurant.id },
         },
-        status: OrderStatus.CONFIRMED,
+        status: OrderStatus.PENDING,
         user: {
           connect: { id: data.user.id },
+        },
+        products: {
+          createMany: {
+            data: products.map((product) => ({
+              productId: product.id,
+              quantity: product.quantity,
+            })),
+          },
         },
       })
 
@@ -82,18 +90,16 @@ const Cart = () => {
                     <span>{formatCurrency(subtotalPrice)}</span>
                   </div>
                   <Separator />
+
                   <div className="flex items-center justify-between text-xs">
-                    <span className="text-muted-foreground">Entrega</span>
-                    <span className="font-semibold uppercase text-primary">
+                    <span className="text-muted-foreground">
+                      Taxa de Entrega
+                    </span>
+                    <span className="uppercase">
                       {Number(products?.[0].restaurant.deliveryFee) === 0
                         ? 'Grátis'
                         : formatCurrency(Number(totalDelivery))}
                     </span>
-                  </div>
-                  <Separator />
-                  <div className="flex items-center justify-between text-xs">
-                    <span className="text-muted-foreground">Descontos</span>-{' '}
-                    {formatCurrency(totalDiscounts)}
                   </div>
                   <Separator />
                   <div className="flex justify-between">
@@ -101,7 +107,26 @@ const Cart = () => {
                     <span className="text-sm font-semibold">
                       {totalDelivery === 0
                         ? formatCurrency(totalPrice)
-                        : formatCurrency(totalPrice + totalDelivery)}
+                        : formatCurrency(subtotalPrice + totalDelivery)}
+                    </span>
+                  </div>
+                  <Separator />
+
+                  <div className="flex items-center justify-between text-xs">
+                    <span className="text-muted-foreground">Descontos</span>-{' '}
+                    <span className="font-semibold uppercase text-primary">
+                      -{formatCurrency(totalDiscounts)}
+                    </span>
+                  </div>
+                  <Separator />
+                  <div className="flex items-center justify-between text-xs">
+                    <span className="text-muted-foreground">
+                      Total do Pedido com desconto
+                    </span>
+                    <span className="text-sm font-semibold uppercase">
+                      {formatCurrency(
+                        subtotalPrice + totalDelivery - totalDiscounts,
+                      )}
                     </span>
                   </div>
                 </CardContent>
