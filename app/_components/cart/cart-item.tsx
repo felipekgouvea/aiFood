@@ -90,7 +90,7 @@ const CartItem = ({ cartProduct }: CartItemProps) => {
           size="icon"
           variant="outline"
           onClick={handleRemoveProductToCartClick}
-          className="h-8 w-8 border border-[#cac3c3] hover:bg-primary hover:text-white"
+          className="h-8 w-8 border border-[#cac3c4] hover:bg-primary hover:text-white"
         >
           <Trash2Icon size={16} />
         </Button>
