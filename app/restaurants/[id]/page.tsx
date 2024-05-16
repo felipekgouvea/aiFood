@@ -1,16 +1,16 @@
-import { db } from '@/app/_lib/prisma'
-import { notFound } from 'next/navigation'
-import RestaurantImage from './_components/restaurant-image'
-import Image from 'next/image'
-import StartBadge from '@/app/_components/badge/start-badge'
-import DeliveryInfo from '@/app/_components/delivery/delivery-info'
-import ProductList from '@/app/_components/product/product-list'
-import CartBanner from './_components/cart-banner'
+import { db } from "@/app/_lib/prisma";
+import { notFound } from "next/navigation";
+import RestaurantImage from "./_components/restaurant-image";
+import Image from "next/image";
+import StartBadge from "@/app/_components/badge/start-badge";
+import DeliveryInfo from "@/app/_components/delivery/delivery-info";
+import ProductList from "@/app/_components/product/product-list";
+import CartBanner from "./_components/cart-banner";
 
 interface RestaurantPageProps {
   params: {
-    id: string
-  }
+    id: string;
+  };
 }
 
 const RestaurantPage = async ({ params: { id } }: RestaurantPageProps) => {
@@ -21,7 +21,7 @@ const RestaurantPage = async ({ params: { id } }: RestaurantPageProps) => {
     include: {
       categories: {
         orderBy: {
-          name: 'asc',
+          name: "asc",
         },
         include: {
           product: {
@@ -49,10 +49,10 @@ const RestaurantPage = async ({ params: { id } }: RestaurantPageProps) => {
         },
       },
     },
-  })
+  });
 
   if (!restaurant) {
-    return notFound()
+    return notFound();
   }
 
   return (
@@ -85,8 +85,8 @@ const RestaurantPage = async ({ params: { id } }: RestaurantPageProps) => {
           {restaurant.categories.map((category) => (
             <div key={category.id}>
               <span className="flex min-h-7 min-w-[167px] items-center justify-center rounded-s-sm bg-[#F4F4F5] text-muted-foreground">
-              {category.name}
-            </span>
+                {category.name}
+              </span>
             </div>
           ))}
         </div>
@@ -106,7 +106,7 @@ const RestaurantPage = async ({ params: { id } }: RestaurantPageProps) => {
 
       <CartBanner restaurant={restaurant} />
     </div>
-  )
-}
+  );
+};
 
-export default RestaurantPage
+export default RestaurantPage;

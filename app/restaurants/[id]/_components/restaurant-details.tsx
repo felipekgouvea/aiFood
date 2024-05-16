@@ -1,9 +1,9 @@
-import StartBadge from '@/app/_components/badge/start-badge'
-import DeliveryInfo from '@/app/_components/delivery/delivery-info'
+import StartBadge from "@/app/_components/badge/start-badge";
+import DeliveryInfo from "@/app/_components/delivery/delivery-info";
 // import ProductList from '@/app/_components/product/product-list'
-import { Prisma } from '@prisma/client'
+import { Prisma } from "@prisma/client";
 
-import Image from 'next/image'
+import Image from "next/image";
 
 interface RestaurantDetailsProps {
   restaurant: Prisma.RestaurantGetPayload<{
@@ -14,15 +14,15 @@ interface RestaurantDetailsProps {
             include: {
               restaurant: {
                 select: {
-                  name: true
-                }
-              }
-            }
-          }
-        }
-      }
-    }
-  }>
+                  name: true;
+                };
+              };
+            };
+          };
+        };
+      };
+    };
+  }>;
 }
 
 const RestaurantDetails = ({ restaurant }: RestaurantDetailsProps) => {
@@ -53,8 +53,8 @@ const RestaurantDetails = ({ restaurant }: RestaurantDetailsProps) => {
         {restaurant.categories.map((category) => (
           <div key={category.id}>
             <span className="flex min-h-7 min-w-[167px] items-center justify-center rounded-s-sm bg-[#F4F4F5] text-muted-foreground">
-            {category.name}
-          </span>
+              {category.name}
+            </span>
           </div>
         ))}
       </div>
@@ -64,7 +64,7 @@ const RestaurantDetails = ({ restaurant }: RestaurantDetailsProps) => {
         {/* <ProductList products={cate} /> */}
       </div>
     </div>
-  )
-}
+  );
+};
 
-export default RestaurantDetails
+export default RestaurantDetails;
