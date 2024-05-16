@@ -51,9 +51,11 @@ const RestaurantDetails = ({ restaurant }: RestaurantDetailsProps) => {
 
       <div className="mt-3 flex gap-2 overflow-x-scroll px-5 [&::-webkit-scrollbar]:hidden">
         {restaurant.categories.map((category) => (
-          <span className="flex min-h-7 min-w-[167px] items-center justify-center rounded-s-sm bg-[#F4F4F5] text-muted-foreground">
+          <div key={category.id}>
+            <span className="flex min-h-7 min-w-[167px] items-center justify-center rounded-s-sm bg-[#F4F4F5] text-muted-foreground">
             {category.name}
           </span>
+          </div>
         ))}
       </div>
 
