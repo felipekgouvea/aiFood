@@ -5,10 +5,13 @@ import { Badge } from '@/app/_components/ui/badge'
 import { Button } from '@/app/_components/ui/button'
 import { Card, CardContent, CardFooter } from '@/app/_components/ui/card'
 import { Separator } from '@/app/_components/ui/separator'
+import { CartContext } from '@/app/_context/cart'
 import { formatCurrency } from '@/app/_helpers/price'
 import { OrderStatus, Prisma } from '@prisma/client'
 import { ChevronRight } from 'lucide-react'
 import Link from 'next/link'
+import { useRouter } from 'next/navigation'
+import { useContext } from 'react'
 
 interface MyOrdersItemProps {
   order: Prisma.OrderGetPayload<{
@@ -39,6 +42,21 @@ const getOrderStatusLabel = (status: OrderStatus) => {
 }
 
 const MyOrdersItem = ({ order }: MyOrdersItemProps) => {
+  const { addProductToCart } = useContext(CartContext)
+
+  const router = useRouter()
+
+  const handleRedoOrderClick = () => {
+    for (const orderProduct of order.products) {
+      addProductToCart({
+        product: { ...orderProduct.product, restaurant: order.restaurant },
+        quantity: orderProduct.quantity,
+      })
+    }
+
+    router.push(`/restaurants/${order.restaurantId}`)
+  }
+
   return (
     <Card className="border-[#c2b5b5] shadow-md">
       <CardContent className="space-y-4 p-5">
@@ -136,8 +154,8 @@ const MyOrdersItem = ({ order }: MyOrdersItemProps) => {
         <Button
           size="sm"
           variant="link"
+          onClick={handleRedoOrderClick}
           className="text-sm font-semibold hover:no-underline"
-          disabled={order.status !== 'DELIVERED'}
         >
           Adicionar a Sacola
         </Button>
