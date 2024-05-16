@@ -8,7 +8,7 @@
     "build": "next build",
     "start": "next start",
     "lint": "next lint",
-    "prepare": "husky"
+    "prepare": "prisma generate"
   },
   "prisma": {
     "seed": "ts-node ./prisma/seed.ts"
@@ -39,7 +39,6 @@
     "zod": "^3.23.8"
   },
   "devDependencies": {
-    
     "@types/node": "^20",
     "@types/react": "^18",
     "@types/react-dom": "^18",
