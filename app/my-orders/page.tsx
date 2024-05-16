@@ -34,7 +34,7 @@ const MyOrdersPage = async () => {
       <div className="px-5 py-7">
         <Header />
       </div>
-      <div className="px-5">
+      <div className="px-5 pb-5">
         <h2 className="pb-6 text-lg font-semibold">Meus Pedidos</h2>
 
         <div className="flex flex-col gap-3">

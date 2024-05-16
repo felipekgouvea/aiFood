@@ -42,18 +42,18 @@ const CartItem = ({ cartProduct }: CartItemProps) => {
             className="rounded-lg object-cover shadow-md"
           />
         </div>
-        <div className="flex flex-col gap-4">
-          <div className="flex flex-col gap-1">
-            <h2 className="text-sm font-semibold">{cartProduct.name}</h2>
+        <div className="flex flex-col gap-5">
+          <div className="flex flex-col gap-2">
+            <h2 className="text-xs font-semibold">{cartProduct.name}</h2>
             <div className="flex items-center gap-2">
-              <h3 className="text-sm font-bold">
+              <h3 className="text-xs font-bold">
                 {formatCurrency(
                   calculeteProductTotalPrice(cartProduct) *
                     cartProduct.quantity,
                 )}
               </h3>
               {cartProduct.discountPercentage > 0 && (
-                <span className="text-sm text-muted-foreground line-through">
+                <span className="text-xs text-muted-foreground line-through">
                   {formatCurrency(
                     Number(cartProduct.price) * cartProduct.quantity,
                   )}

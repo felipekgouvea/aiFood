@@ -19,9 +19,17 @@ import {
   AlertDialogTitle,
 } from '../ui/alert-dialog'
 import { Loader2 } from 'lucide-react'
+import { toast } from 'sonner'
+import { useRouter } from 'next/navigation'
 
-const Cart = () => {
+interface CartProps {
+  setIsOpenCart: (isOpen: boolean) => void
+}
+
+const Cart = ({ setIsOpenCart }: CartProps) => {
   const { data } = useSession()
+  const router = useRouter()
+
   const { products, totalDiscounts, totalPrice, subtotalPrice, clearCart } =
     useContext(CartContext)
   const [isSubmitLoading, setIsSubmitLoading] = useState(false)
@@ -58,6 +66,14 @@ const Cart = () => {
       })
 
       clearCart()
+      setIsOpenCart(false)
+      toast('Pedido realizado com sucesso!', {
+        description: 'Você pode acompanhá-lo na tela dos seus pedidos',
+        action: {
+          label: 'Meus Pedidos',
+          onClick: () => router.push('/my-orders'),
+        },
+      })
     } catch (error) {
       console.log(error)
     } finally {
@@ -73,16 +89,16 @@ const Cart = () => {
 
   return (
     <>
-      <div className="flex flex-col justify-between py-5">
+      <div className="flex h-full flex-col py-5">
         {products.length > 0 ? (
           <>
-            <div className="space-y-4">
+            <div className="flex-auto space-y-4">
               {products.map((product) => (
                 <CartItem cartProduct={product} key={product.id} />
               ))}
             </div>
 
-            <div className="mt-6">
+            <div className="mb-3 mt-6">
               <Card>
                 <CardContent className="space-y-3 p-5">
                   <div className="flex items-center justify-between text-xs">
